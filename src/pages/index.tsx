@@ -32,7 +32,11 @@ export default class IndexPage extends React.Component<IndexPageProps, {}> {
     const { title, description } = this.props.data.site.siteMetadata
     return (
       <Layout>
-        <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
+        <SEO
+          title="Home"
+          description="Required"
+          keywords={[`gatsby`, `application`, `react`]}
+        />
         <h1>{title}</h1>
         <p>{description}</p>
         <p>Now go build something great.</p>
