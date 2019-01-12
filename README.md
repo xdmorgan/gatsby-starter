@@ -1,5 +1,7 @@
 # xdmorgan/gatsby-starter
 
+[![CircleCI](https://circleci.com/gh/xdmorgan/gatsby-starter/tree/master.svg?style=svg)](https://circleci.com/gh/xdmorgan/gatsby-starter/tree/master)
+
 The official `gatsby-starter-default` plus:
 
 - TypeScript
