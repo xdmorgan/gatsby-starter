@@ -5,7 +5,7 @@
 The official `gatsby-starter-default` plus:
 
 - TypeScript
-- PostCSS
+- [PostCSS](https://github.com/postcss/postcss) & [StyleLint](https://github.com/stylelint/stylelint-config-standard)
 - dotenv (`.env.[NODE_ENV]` e.g. `.env.production`)
 - Jest
 - CircleCI
