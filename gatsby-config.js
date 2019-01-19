@@ -9,7 +9,15 @@ module.exports = {
     author: `@gatsbyjs + @xdmorgan`,
   },
   plugins: [
-    `gatsby-plugin-react-helmet`,
+    /**
+     * Typescript
+     * ------------------------------------------------------------------------
+     */
+    `gatsby-plugin-typescript`,
+    /**
+     * Sources
+     * ------------------------------------------------------------------------
+     */
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -17,8 +25,39 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
+    /**
+     * Images
+     * ------------------------------------------------------------------------
+     */
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    /**
+     * Styling
+     * ------------------------------------------------------------------------
+     */
+    `gatsby-plugin-postcss`, // global
+    {
+      resolve: `gatsby-plugin-styled-components`, // components
+      options: {}, // Add any options here
+    },
+    /**
+     * SEO
+     * ------------------------------------------------------------------------
+     */
+    `gatsby-plugin-react-helmet`,
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: process.env.UA_TRACKING_ID,
+      },
+    },
+    /**
+     * PWA
+     * ------------------------------------------------------------------------
+     * this (optional) plugin enables Progressive Web App + Offline functionality
+     * To learn more, visit: https://gatsby.app/offline
+     * ------------------------------------------------------------------------
+     */
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -28,13 +67,11 @@ module.exports = {
         background_color: `#0068fa`,
         theme_color: `#0068fa`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/avatar.png`, // This path is relative to the root of the site.
       },
     },
-    `gatsby-plugin-postcss`,
-    `gatsby-plugin-typescript`,
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.app/offline
-    // ...(process.env.NODE_ENV === 'production' ? ['gatsby-plugin-offline'] : []),
+    // ...(process.env.NODE_ENV !== 'development'
+    //   ? ['gatsby-plugin-offline']
+    //   : []),
   ],
 }

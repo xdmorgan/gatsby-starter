@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { Link, graphql } from 'gatsby'
+import styled from 'styled-components'
 
 import Layout from '../components/layout'
 import Image from '../components/image'
@@ -27,6 +28,12 @@ export const indexPageQuery = graphql`
   }
 `
 
+const StyledSection = styled.section`
+  padding: 4em;
+  max-width: 400px;
+  background: #ededed;
+`
+
 export default class IndexPage extends React.Component<IndexPageProps, {}> {
   public render() {
     const { title, description } = this.props.data.site.siteMetadata
@@ -40,9 +47,9 @@ export default class IndexPage extends React.Component<IndexPageProps, {}> {
         <h1>{title}</h1>
         <p>{description}</p>
         <p>Now go build something great.</p>
-        <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
+        <StyledSection>
           <Image />
-        </div>
+        </StyledSection>
         <Link to="/page-2/">Go to page 2</Link>
       </Layout>
     )
