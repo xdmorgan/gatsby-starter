@@ -36,7 +36,7 @@
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
-    "serve": "http-server public",
+    "serve": "http-server -p 8000 public",
     "preview": "yarn build && yarn serve",
     "develop": "gatsby develop",
     "start": "npm run develop",
