@@ -5,11 +5,11 @@ require('dotenv').config({
 const {
   SITE_META_DESCRIPTION = `An opinionated Gatsby starter project with TypeScript and styled-components`,
   SITE_META_KEYWORDS = 'gatsby-starter, Gatsby template, FPO',
-  SITE_META_LOGO = 'https://danny.codes/icons/icon-256x256.png',
+  SITE_META_LOGO = 'https://xdmorgan-gatsby-starter.netlify.com/icons/icon-256x256.png',
   SITE_META_ORGANIZATION = 'Dan Morgan',
   SITE_META_TITLE = '@xdmorgan/gatsby-starter',
   SITE_META_TWITTER = '@xdanmorgan',
-  SITE_META_URL = `https://wizardly-meitner-f3dbf9.netlify.com/`,
+  SITE_META_URL = `https://xdmorgan-gatsby-starter.netlify.com/`,
 } = process.env
 
 module.exports = {
