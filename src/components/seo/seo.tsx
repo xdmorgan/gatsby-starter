@@ -54,7 +54,6 @@ export default class SEO extends React.Component<Props, {}> {
             },
           }
           const schema = getSchema(options)
-          console.log(options, schema)
           const { lang } = this.props
           const { twitter } = query
           const keywords = this.props.keywords || query.keywords
