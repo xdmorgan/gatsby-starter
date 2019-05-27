@@ -11,9 +11,7 @@ const Layout = ({ children }) => (
     query={graphql`
       query SiteTitleQuery {
         site {
-          siteMetadata {
-            title
-          }
+          ...SiteMetaFields
         }
       }
     `}
