@@ -4,13 +4,18 @@ require('dotenv').config({
 
 module.exports = {
   siteMetadata: {
-    description: process.env.SITE_META_DESCRIPTION,
-    keywords: process.env.SITE_META_KEYWORDS.split(', '),
-    logo: process.env.SITE_META_LOGO,
-    organization: process.env.SITE_META_ORGANIZATION,
-    title: process.env.SITE_META_TITLE,
-    twitter: process.env.SITE_META_TWITTER,
-    url: process.env.SITE_META_URL,
+    // site meta description
+    description: process.env.SITE_META_DESCRIPTION || "",
+    // site meta keywords
+    keywords: (process.env.SITE_META_KEYWORDS || "").split(', '),
+    // site logo (meta json schema)
+    logo: process.env.SITE_META_LOGO || "",
+    // organization name (meta json schema)
+    organization: process.env.SITE_META_ORGANIZATION || "",
+    // Base page title
+    title: process.env.SITE_META_TITLE || "",
+    // twitter card user attribution
+    twitter: process.env.SITE_META_TWITTER || ""
   },
   plugins: [
     /**
