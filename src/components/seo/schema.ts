@@ -82,8 +82,9 @@ export default ({ page, site }: JSONLDSchemaOptions) => {
     // Always include the base website schema
     getWebsiteSchema({ page, site }),
     // Add breadcrumb schema unless we're on the home page
-    // FIXME: explicit or implicit check here? Implicit may be error prone
-    ...(page.url === site.url ? [] : [getBreadcrumbSchema({ page, site })]),
+    ...(page.url.replace(/\/$/, '') !== site.url.replace(/\/$/, '')
+      ? [getBreadcrumbSchema({ page, site })]
+      : []),
     // if on editorial content page add BlogPosting schema
     ...(page.blogPost ? [getBlogPostSchema({ page, site })] : []),
   ]

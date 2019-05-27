@@ -1,26 +1,16 @@
 require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
-})
-
-const {
-  SITE_META_DESCRIPTION = `An opinionated Gatsby starter project with TypeScript and styled-components`,
-  SITE_META_KEYWORDS = 'gatsby-starter, Gatsby template, FPO',
-  SITE_META_LOGO = 'https://xdmorgan-gatsby-starter.netlify.com/icons/icon-256x256.png',
-  SITE_META_ORGANIZATION = 'Dan Morgan',
-  SITE_META_TITLE = '@xdmorgan/gatsby-starter',
-  SITE_META_TWITTER = '@xdanmorgan',
-  SITE_META_URL = `https://xdmorgan-gatsby-starter.netlify.com/`,
-} = process.env
+});
 
 module.exports = {
   siteMetadata: {
-    description: SITE_META_DESCRIPTION,
-    keywords: SITE_META_KEYWORDS.split(', '),
-    logo: SITE_META_LOGO,
-    organization: SITE_META_ORGANIZATION,
-    title: SITE_META_TITLE,
-    twitter: SITE_META_TWITTER,
-    url: SITE_META_URL,
+    description: process.env.SITE_META_DESCRIPTION,
+    keywords: process.env.SITE_META_KEYWORDS.split(', '),
+    logo: process.env.SITE_META_LOGO,
+    organization: process.env.SITE_META_ORGANIZATION,
+    title: process.env.SITE_META_TITLE,
+    twitter: process.env.SITE_META_TWITTER,
+    url: process.env.SITE_META_URL,
   },
   plugins: [
     /**

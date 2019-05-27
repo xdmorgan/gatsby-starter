@@ -2,7 +2,7 @@
   "name": "@xdmorgan/gatsby-starter",
   "private": true,
   "description": "A customized version of Gatsby's default starter.",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": "Dan Morgan",
   "dependencies": {
     "babel-plugin-styled-components": "^1.10.0",
