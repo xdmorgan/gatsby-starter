@@ -15,7 +15,9 @@ module.exports = {
     // Base page title
     title: process.env.SITE_META_TITLE || "",
     // twitter card user attribution
-    twitter: process.env.SITE_META_TWITTER || ""
+    twitter: process.env.SITE_META_TWITTER || "",
+    // fkn base url
+    url: process.env.SITE_META_URL || ""
   },
   plugins: [
     /**

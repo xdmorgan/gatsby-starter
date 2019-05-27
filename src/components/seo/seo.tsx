@@ -37,7 +37,7 @@ export default class SEO extends React.Component<Props, {}> {
             render={({ site: { siteMetadata: query } }) => {
               const options = {
                 site: {
-                  url: location.origin,
+                  url: query.url,
                   title: query.title,
                   description: query.description,
                   logo: query.logo,
@@ -48,7 +48,7 @@ export default class SEO extends React.Component<Props, {}> {
                   description: this.props.description || query.description,
                   image: this.props.image || query.logo,
                   title: mergeTitles(this.props.title, query.title),
-                  url: location.origin + location.pathname,
+                  url: query.url + location.pathname,
                 },
               }
               const schema = getSchema(options)
@@ -93,14 +93,7 @@ export default class SEO extends React.Component<Props, {}> {
 const detailsQuery = graphql`
   query DefaultSEOQuery {
     site {
-      siteMetadata {
-        title
-        description
-        logo
-        keywords
-        organization
-        twitter
-      }
+      ...SiteMetaFields
     }
   }
 `
