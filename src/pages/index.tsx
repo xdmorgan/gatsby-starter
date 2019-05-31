@@ -41,6 +41,7 @@ export default function Page({ data }: Props) {
         <Image />
       </StyledSection>
       <Link to="/page-2/">Go to page 2</Link>
+      <Link to="//google.com">Go to Google</Link>
     </Layout>
   )
 }
