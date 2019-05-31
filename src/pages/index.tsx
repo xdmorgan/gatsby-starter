@@ -1,9 +1,10 @@
 import * as React from 'react'
-import { Link, graphql } from 'gatsby'
+import { graphql } from 'gatsby'
 import styled from 'styled-components'
 
 import Layout from '../components/layout'
 import Image from '../components/image'
+import Link from '../components/link'
 import { SEO } from '../components/seo'
 import { SiteMeta } from '../queries/site-meta';
 
@@ -41,6 +42,7 @@ export default function Page({ data }: Props) {
         <Image />
       </StyledSection>
       <Link to="/page-2/">Go to page 2</Link>
+      <Link to="//google.com">Go to Google</Link>
     </Layout>
   )
 }

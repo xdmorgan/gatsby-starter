@@ -16,6 +16,8 @@ interface Props {
 const mergeTitles = (page: string, base: string) =>
   page ? `${page} | ${base}` : base
 
+const hasLeadingSlashes = (url: string) => url.slice(0, 2) === '//'
+
 /**
  * SEO utility wrapper (powered by react-helmet)
  * Remixed but inspired by:
@@ -56,6 +58,7 @@ export default class SEO extends React.Component<Props, {}> {
               const { twitter } = query
               const keywords = this.props.keywords || query.keywords
               const { blogPost, url, title, description, image } = options.page
+              const imageUrlWithProtocol = hasLeadingSlashes(image) ? 'https:' + image : image;
               return (
                 <Helmet htmlAttributes={{ lang }} title={title}>
                   {/* General tags */}
@@ -73,13 +76,13 @@ export default class SEO extends React.Component<Props, {}> {
                   ) : null}
                   <meta property="og:title" content={title} />
                   <meta property="og:description" content={description} />
-                  <meta property="og:image" content={image} />
+                  <meta property="og:image" content={imageUrlWithProtocol} />
                   {/* Twitter Card tags */}
                   <meta name="twitter:card" content="summary_large_image" />
                   <meta name="twitter:creator" content={twitter} />
                   <meta name="twitter:title" content={title} />
                   <meta name="twitter:description" content={description} />
-                  <meta name="twitter:image" content={image} />
+                  <meta name="twitter:image" content={imageUrlWithProtocol} />
                 </Helmet>
               )
             }}
