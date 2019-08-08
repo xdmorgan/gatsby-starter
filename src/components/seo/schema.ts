@@ -4,7 +4,6 @@ type BlogPostOptions = {
 }
 
 type PageOptions = {
-  blogPost?: BlogPostOptions
   description: string
   image: string
   title: string
@@ -19,12 +18,13 @@ type SiteOptions = {
   url: string
 }
 
-type JSONLDSchemaOptions = {
+const getWebsiteSchema = ({
+  page,
+  site,
+}: {
   page: PageOptions
   site: SiteOptions
-}
-
-const getWebsiteSchema = ({ page, site }: JSONLDSchemaOptions) => ({
+}) => ({
   '@context': 'http://schema.org',
   '@type': 'WebSite',
   url: page.url,
@@ -32,7 +32,13 @@ const getWebsiteSchema = ({ page, site }: JSONLDSchemaOptions) => ({
   alternateName: site.title,
 })
 
-const getBreadcrumbSchema = ({ page, site }: JSONLDSchemaOptions) => ({
+const getBreadcrumbSchema = ({
+  page,
+  site,
+}: {
+  page: PageOptions
+  site: SiteOptions
+}) => ({
   '@context': site.url,
   '@type': 'BreadcrumbList',
   itemListElement: [
@@ -48,7 +54,13 @@ const getBreadcrumbSchema = ({ page, site }: JSONLDSchemaOptions) => ({
   ],
 })
 
-const getBlogPostSchema = ({ page, site }: JSONLDSchemaOptions) => ({
+const getBlogPostSchema = ({
+  page,
+  site,
+}: {
+  page: PageOptions & { blogPost: BlogPostOptions }
+  site: SiteOptions
+}) => ({
   '@context': site.url,
   '@type': 'BlogPosting',
   url: page.url,
@@ -77,7 +89,13 @@ const getBlogPostSchema = ({ page, site }: JSONLDSchemaOptions) => ({
   datePublished: page.blogPost.datePublished,
 })
 
-export default ({ page, site }: JSONLDSchemaOptions) => {
+export default ({
+  page,
+  site,
+}: {
+  page: PageOptions & { blogPost?: BlogPostOptions }
+  site: SiteOptions
+}) => {
   return [
     // Always include the base website schema
     getWebsiteSchema({ page, site }),
@@ -86,6 +104,7 @@ export default ({ page, site }: JSONLDSchemaOptions) => {
       ? [getBreadcrumbSchema({ page, site })]
       : []),
     // if on editorial content page add BlogPosting schema
+    // @ts-ignore
     ...(page.blogPost ? [getBlogPostSchema({ page, site })] : []),
   ]
 }

@@ -5,6 +5,7 @@ import { Location } from '@reach/router'
 import getSchema from './schema'
 
 interface Props {
+  schema?: boolean
   blogPost?: { author: string; datePublished: string }
   description?: string
   image?: string
@@ -13,7 +14,7 @@ interface Props {
   title?: string
 }
 
-const mergeTitles = (page: string, base: string) =>
+const mergeTitles = (page: string = '', base: string) =>
   page ? `${page} | ${base}` : base
 
 const hasLeadingSlashes = (url: string) => url.slice(0, 2) === '//'
@@ -28,6 +29,7 @@ const hasLeadingSlashes = (url: string) => url.slice(0, 2) === '//'
 export default class SEO extends React.Component<Props, {}> {
   static defaultProps = {
     lang: `en`,
+    schema: false,
   }
 
   public render() {
@@ -53,36 +55,47 @@ export default class SEO extends React.Component<Props, {}> {
                   url: query.url + location.pathname,
                 },
               }
-              const schema = getSchema(options)
-              const { lang } = this.props
-              const { twitter } = query
-              const keywords = this.props.keywords || query.keywords
-              const { blogPost, url, title, description, image } = options.page
-              const imageUrlWithProtocol = hasLeadingSlashes(image) ? 'https:' + image : image;
+              const imageWithProtocol =
+                (hasLeadingSlashes(options.page.image) ? 'https:' : '') +
+                options.page.image
               return (
-                <Helmet htmlAttributes={{ lang }} title={title}>
+                <Helmet
+                  htmlAttributes={{ lang: this.props.lang }}
+                  title={options.page.title}
+                >
                   {/* General tags */}
-                  <meta name="description" content={description} />
-                  <meta name="keywords" content={keywords.join(`, `)} />
-                  <meta name="image" content={image} />
+                  <meta name="description" content={options.page.description} />
+                  <meta
+                    name="keywords"
+                    content={(this.props.keywords || query.keywords).join(`, `)}
+                  />
+                  <meta name="image" content={imageWithProtocol} />
                   {/* Schema.org tags */}
-                  <script type="application/ld+json">
-                    {JSON.stringify(schema)}
-                  </script>
+                  {!this.props.schema ? null : (
+                    <script type="application/ld+json">
+                      {JSON.stringify(getSchema(options))}
+                    </script>
+                  )}
                   {/* OpenGraph tags */}
-                  <meta property="og:url" content={url} />
-                  {blogPost ? (
+                  <meta property="og:url" content={options.page.url} />
+                  {options.page.blogPost ? (
                     <meta property="og:type" content="article" />
                   ) : null}
-                  <meta property="og:title" content={title} />
-                  <meta property="og:description" content={description} />
-                  <meta property="og:image" content={imageUrlWithProtocol} />
+                  <meta property="og:title" content={options.page.title} />
+                  <meta
+                    property="og:description"
+                    content={options.page.description}
+                  />
+                  <meta property="og:image" content={imageWithProtocol} />
                   {/* Twitter Card tags */}
                   <meta name="twitter:card" content="summary_large_image" />
-                  <meta name="twitter:creator" content={twitter} />
-                  <meta name="twitter:title" content={title} />
-                  <meta name="twitter:description" content={description} />
-                  <meta name="twitter:image" content={imageUrlWithProtocol} />
+                  <meta name="twitter:creator" content={query.twitter} />
+                  <meta name="twitter:title" content={options.page.title} />
+                  <meta
+                    name="twitter:description"
+                    content={options.page.description}
+                  />
+                  <meta name="twitter:image" content={imageWithProtocol} />
                 </Helmet>
               )
             }}
