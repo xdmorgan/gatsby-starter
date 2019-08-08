@@ -1,18 +1,17 @@
 import * as React from 'react'
 import { graphql } from 'gatsby'
 import styled from 'styled-components'
-
-import Layout from '../components/layout'
-import Image from '../components/image'
+import Image from 'gatsby-image'
 import Link from '../components/link'
 import { SEO } from '../components/seo'
-import { SiteMeta } from '../queries/site-meta';
+import { SiteMeta } from '../queries/site-meta'
 
 interface Props {
   data: {
     site: {
       siteMetadata: SiteMeta
     }
+    placeholderImage: any
   }
 }
 
@@ -25,7 +24,7 @@ const StyledSection = styled.section`
 export default function Page({ data }: Props) {
   const { title, description } = data.site.siteMetadata
   return (
-    <Layout>
+    <>
       <SEO
         // all fields optional, will fall back to gatsby-config.js global settings
         // all pages have open graph and twitter card meta tags and website JSON LD schema
@@ -39,11 +38,11 @@ export default function Page({ data }: Props) {
       <p>{description}</p>
       <p>Now go build something great.</p>
       <StyledSection>
-        <Image />
+        <Image fluid={data.placeholderImage.childImageSharp.fluid} />
       </StyledSection>
-      <Link to="/page-2/">Go to page 2</Link>
+      <Link to="/test">Go to MDX page</Link>
       <Link to="//google.com">Go to Google</Link>
-    </Layout>
+    </>
   )
 }
 
@@ -51,6 +50,13 @@ export const query = graphql`
   query IndexPageQuery {
     site {
       ...SiteMetaFields
+    }
+    placeholderImage: file(relativePath: { eq: "gatsby-astronaut.png" }) {
+      childImageSharp {
+        fluid(maxWidth: 300) {
+          ...GatsbyImageSharpFluid
+        }
+      }
     }
   }
 `
