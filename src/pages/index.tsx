@@ -22,7 +22,6 @@ const StyledSection = styled.section`
 `
 
 export default function Page({ data }: Props) {
-  const { title, description } = data.site.siteMetadata
   return (
     <>
       <SEO
@@ -30,12 +29,13 @@ export default function Page({ data }: Props) {
         // all pages have open graph and twitter card meta tags and website JSON LD schema
         // pages with a url other than the base url also have a breadcrumbs LD Schema
         // blogPost prop is only necessary on blog pages, and adds a blogposting JSON-LD schema
+        schema
         title="Hello!"
         description="Hi from the homepage"
         blogPost={{ author: 'Dan Morgan', datePublished: '2019/01/21' }}
       />
-      <h1>{title}</h1>
-      <p>{description}</p>
+      <h1>{data.site.siteMetadata.title}</h1>
+      <p>{data.site.siteMetadata.description}</p>
       <p>Now go build something great.</p>
       <StyledSection>
         <Image fluid={data.placeholderImage.childImageSharp.fluid} />
