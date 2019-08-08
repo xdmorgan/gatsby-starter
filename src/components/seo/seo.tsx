@@ -13,7 +13,7 @@ interface Props {
   title?: string
 }
 
-const mergeTitles = (page: string, base: string) =>
+const mergeTitles = (page: string = '', base: string) =>
   page ? `${page} | ${base}` : base
 
 const hasLeadingSlashes = (url: string) => url.slice(0, 2) === '//'
@@ -58,7 +58,9 @@ export default class SEO extends React.Component<Props, {}> {
               const { twitter } = query
               const keywords = this.props.keywords || query.keywords
               const { blogPost, url, title, description, image } = options.page
-              const imageUrlWithProtocol = hasLeadingSlashes(image) ? 'https:' + image : image;
+              const imageUrlWithProtocol = hasLeadingSlashes(image)
+                ? 'https:' + image
+                : image
               return (
                 <Helmet htmlAttributes={{ lang }} title={title}>
                   {/* General tags */}

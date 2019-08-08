@@ -2,7 +2,7 @@
   "name": "@xdmorgan/gatsby-starter",
   "private": true,
   "description": "A customized version of Gatsby's default starter.",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "author": "Dan Morgan",
   "engines": {
     "node": "^12.0.0"
@@ -10,6 +10,8 @@
   "dependencies": {
     "@mdx-js/mdx": "^1.1.6",
     "@mdx-js/react": "^1.1.6",
+    "@types/react-helmet": "^5.0.9",
+    "@types/styled-components": "^4.1.18",
     "babel-plugin-styled-components": "^1.10.6",
     "classnames": "^2.2.6",
     "cssnano": "^4.1.10",
